@@ -1,0 +1,19 @@
+.main-page {
+  text-align: center;
+}
+
+.main-page .filters .search-bar {
+  height: 40px;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border-radius: 30px;
+  text-indent: 10px;
+  outline: none;
+}
+
+.main-page .filters .main-tabs {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}

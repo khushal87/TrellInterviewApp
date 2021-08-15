@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Signup from "./pages/SignUpPage";
+import Mainpage from "./pages/MainPage";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/movie/get-all-movies")
+      .then((result) => {
+        setMovies(result.data.result);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/">
+          <Mainpage movies={movies} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
